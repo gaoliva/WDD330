@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WDD 330</title>
+  </head>
+  <body>
+    <h1>Week 2 Notes</h1>
+    <section>
+      <h2>Ch2: Programming Basics</h2>
+      <ul>
+        <li>
+          Comments can be added by using (// sample comment) or
+          /*samplecomment*/
+        </li>
+        <li>
+          Best practice to use semicolons for statements, even though Automatic
+          Semicolon Insertion is active
+        </li>
+        <li>Blocks do not need to be terminated by a semicolon {this block}</li>
+        <li>
+          Primitive Data Types: String, Symbol, Number, Boolean, Undefined, Null
+        </li>
+        <li>
+          Declare variables with const or let (var not longer used starting on
+          ES6)
+        </li>
+        <li>
+          If the variable references a non-primitive data type the underlying
+          data inside the object can change (known as mutating the object).
+        </li>
+        <li>
+          Variables that start with an underscore generally refer to private
+          properties and method. The $ character used by jQuery library.
+          <br />JavaScript’s built-in functions use the camel-case notation and
+          this is probably the best convention.
+        </li>
+        <li>
+          An alternative notation you can use to access a primitive data type's
+          properties are square brackets: <br />
+          <code>
+            name['length']; // note the property name is in quote marks
+            <br />
+            << 5
+          </code>
+        </li>
+        <li>
+          Template literals are a special types of string that were introduced
+          in ES6. Template literals use the backtick character, `, to deliminate
+          the string
+        </li>
+        <li>
+          JavaScript is known as a weakly typed or loosely typed language. This
+          means that you don't need to explicitly specify what data-type a
+          variable is when you declare it. This can lead to unexpected behavior
+          and hard to find bugs in code, particularly when type-coercion takes
+          place in the background.
+        </li>
+
+        <li>
+          Only 9 values are always false and these are known as falsy values:
+          <code>
+            <br />
+            * "" // double quoted empty string literal <br />
+            * '' // single quoted empty string literal <br />
+            * `` // empty template literal * 0 <br />
+            * -0 // considered different to 0 by JavaScript! <br />
+            * NaN <br />
+            * false <br />
+            * null <br />
+            * undefined
+          </code>
+        </li>
+        <li>
+          The correct way to check for equality is to use either a double equals
+          operator, ==, known as "soft equality" or the triple equals operator,
+          ===, known as "hard equality".
+        </li>
+      </ul>
+      <details>
+        <summary><strong> List of Reserved Words </strong></summary>
+        abstract, await, boolean, break, byte, case, catch, char, class, const,
+        continue, debugger, default, delete, do, double, else, enum, export,
+        extends, false, final, finally, float, for, function, goto, if,
+        implements, import, in instanceof, int, interface, let, long, native,
+        new, null, package, private, protected, public, return, short, static,
+        super, switch, synchronized, this, throw, throws, transient, true, try,
+        typeof, var, volatile, void, while, with, yield
+      </details>
+    </section>
+    <section>
+      <h2>Ch3: Arrays, Logic, and Loops</h2>
+      <ul>
+        <li>
+          Arrays are not primitive values but a special built-in object, as we
+          can see when we use the typeof operator
+        </li>
+        <li>
+          You can add/delete a value by index:
+          <code>heroes[0] = 'Batman';</code>
+        </li>
+        <li>
+          You can create an array literal with values already in it: <br />
+          <code
+            >const avengers = ['Captain America', 'Iron Man', 'Thor', 'Hulk'];
+            << ['Captain America', 'Iron Man', 'Thor', 'Hulk']
+          </code>
+        </li>
+        <li>
+          Destructuring an array is the concept of taking values out of an array
+          and presenting them as individual values. <br />
+          <code>const [x,y] = [1,2];</code>
+        </li>
+        <li>
+          Array Properties and Methods: length, pop, push, shift, unshift,
+          concat(or the spread opertor ...), join, slice(non-destructive),
+          splice(destructive), reverse(permanent change), sort (alphabetical by
+          default, also permanent), indexof, includes,
+        </li>
+        <li>
+          A set is a data structure that represents a collection of unique
+          values, so it cannot include any duplicate values, This gives a
+          convenient way of eliminating any duplicate values from an array in a
+          single operation.
+        </li>
+        <li>
+          Type coercion is not used when values are added to a set, so the
+          string '2' will be added as a new entry, even if the number 2 is
+          already an element of the set:
+        </li>
+        <li>
+          Set methods: size, has, includes, indexof, delete, clear(all values)
+        </li>
+        <li>
+          Convert Sets to Arrays: <br />
+          <code
+            >const shoppingSet = new
+            Set().add('Apples').add('Bananas').add('Beans'); shoppingSet << Set
+            { 'Apples', 'Bananas', 'Beans' }</code
+          >
+          <br />Then into: <br />
+          <code
+            >const shoppingArray = [...shoppingSet] shoppingArray << [ 'Apples',
+            'Bananas', 'Beans' ]</code
+          >
+          <br />
+          Or you can use Array.from(): <br />
+          <code
+            >onst shoppingSet = new
+            Set().add('Apples').add('Bananas').add('Beans'); const shoppingArray
+            = Array.from(shoppingSet);</code
+          >
+        </li>
+        <li>
+          A memory leak occurs when a program retains references to values that
+          can no longer be accessed in its memory. This means that memory is
+          being used to store values that are no longer required by the program,
+          effectively wasting system resources.
+        </li>
+        <li>
+          Maps are a convenient way of keeping a list of key and value pairs,
+          and are similar to 'hashes', or 'hash tables' or 'dictionaries' in
+          other programming languages. Maps are solely focused on the storage
+          and retrieval of key-value pairs.
+        </li>
+        <li>Map methods: get, has, size, delete, set, clear</li>
+        <li>
+          Maps can be converted into a nested array of key-value pairs in a
+          similar way to sets; using either the spread operator: <br />
+          <code>
+            [...romanNumerals] << [ [ 1, 'I' ], [ 2, 'II' ], [ 3, 'III' ], [ 4,
+            'IV' ], [ 5, 'V' ] ]
+          </code>
+          <br />
+          or the Array.from() method: <br />
+          <code>
+            Array.from(romanNumerals) << [ [ 1, 'I' ], [ 2, 'II' ], [ 3, 'III'
+            ], [ 4, 'IV' ], [ 5, 'V' ] ]
+          </code>
+        </li>
+        <li>
+          A shorthand way of writing an if ... else statement is to use the
+          ternary operator, ?, which takes three operands in the following
+          format: <br />
+          <code>
+            condition ? (//code to run if condition is true) : (//code to run if
+            condition is false)
+          </code>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Ch4: Functions</h2>
+      <ul>
+        <li>
+          Function declaration: <br />
+          <code> function hello(){ console.log('Hello World!'); } </code> <br />
+          <br />
+          Function expression: <br />
+          <code>
+            const goodbye = function(){ console.log('Goodbye World!'); };
+          </code>
+          <br />
+          <br />
+          Alternatively, we can create a named function expression instead:
+          <br />
+          <code>
+            const goodbye = function bye(){ console.log('Goodbye World!'); };
+          </code>
+          <br />
+          <br />
+          Arrow Function: <br />
+          <code> const square = x => x*x; </code> <br />
+        </li>
+        <li>
+          A much better option is to use the rest operator (for function
+          arguments). This was introduced in ES6 and can be used to deal with
+          multiple arguments by creating an array of arguments that are
+          available inside the body of the function. To use the rest operator,
+          simply place three dots in front of the last parameter in a function
+          declaration.
+        </li>
+        <li>
+          Hoisting is the JavaScript interpreter’s action of moving all variable
+          and function declarations to the top of the current scope, regardless
+          of where they are defined.
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Question(s)</h3>
+      <ul>
+        <li>
+          Is there a noticible performance benefit from between going from a
+          "Function Expression" to a "Function Declaration", since one uses a
+          variable?
+        </li>
+        <li>
+          Are "Arrow functions" the standard for must webdevelopment practices?
+          (Multiple developer are using them more than function declaration)
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
