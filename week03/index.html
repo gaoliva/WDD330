@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WDD 330</title>
+  </head>
+  <body>
+    <h1>Week 3 Notes</h1>
+    <section>
+      <h2>Object Methods: this</h2>
+      <ul>
+        <li>
+          Objects are usually created to represent entities of the real world.
+        </li>
+        <li>
+          For a start, lets teach the user to say hello:
+          <code>
+            <pre>
+let user = {
+    name: "John",
+    age: 30
+  };
+  
+  user.sayHi = function() {
+    alert("Hello!");
+  };
+  
+  user.sayHi(); // Hello!
+  </pre
+            >
+          </code>
+        </li>
+        <li>
+          Method shorthand we can omit "function" and just write sayHi().:
+          <code>
+            <pre>
+// these objects do the same
+
+user = {
+  sayHi: function() {
+    alert("Hello");
+  }
+};
+
+// method shorthand looks better, right?
+user = {
+  sayHi() { // same as "sayHi: function(){...}"
+    alert("Hello");
+  }
+};
+                </pre
+            >
+          </code>
+        </li>
+        <li>
+          In JavaScript, keyword this behaves unlike most other programming
+          languages. It can be used in any function, even if its not a method of
+          an object:
+          <code>
+            <pre>
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() {
+  alert( this.name );
+}
+
+// use the same function in two objects
+user.f = sayHi;
+admin.f = sayHi;
+
+// these calls have different this
+// "this" inside the function is the object "before the dot"
+user.f(); // John  (this == user)
+admin.f(); // Admin  (this == admin)
+
+admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
+              </pre
+            >
+          </code>
+        </li>
+        <li>
+          <strong>Summary: </strong>
+          <ol>
+            <li>
+              Functions that are stored in object properties are called
+              “methods”.
+            </li>
+            <li>Methods allow objects to “act” like object.doSomething().</li>
+            <li>Methods can reference the object as this.</li>
+            <li>The value of this is defined at run-time.</li>
+
+            <li>
+              When a function is declared, it may use this, but that this has no
+              value until the function is called.
+            </li>
+            <li>A function can be copied between objects.</li>
+            <li>
+              When a function is called in the “method” syntax: object.method(),
+              the value of this during the call is object.
+            </li>
+            <li>
+              Note that arrow functions are special: they have no this. When
+              this is accessed inside an arrow function, it is taken from
+              outside.
+            </li>
+          </ol>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Ch5: Objects</h2>
+      <ul>
+        <li>
+          An object literal is an object that is created directly in the
+          language by wrapping all its properties and methods in curly braces
+          {}.
+        </li>
+        <li>
+          If a property’s name doesn’t follow the rules for naming variables
+          described in Chapter 2, it needs to be quoted. The property 'real
+          name' in the example above needs to be quoted because it contains a
+          space. In a real-world app, it's likely the "real name" property would
+          actually be named real_name or realName.
+        </li>
+        <li>
+          You can access the properties of an object using the dot notation or
+          using bracket notation. <br />
+          <code>
+            <pre>
+superman.name
+<< 'Superman'
+
+superman['name']
+<< 'Superman'
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          To call an object’s method we can also use dot or bracket notation.
+          <br />
+          <code>
+            <pre>
+superman.fly()
+<< 'Up, up and away!'
+
+superman['fly']()
+<< 'Up, up and away!'
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          You can check if properties or methods exist by using the "in"
+          operator. you could also check to see if the property or method
+          doesn’t return undefined. Another way is to use hasOwnProperty().
+          <br />
+          <code>
+            <pre>
+'city' in superman;
+<< false
+
+superman.city !== undefined;
+<< false
+
+superman.hasOwnProperty('city');
+<< false
+
+superman.hasOwnProperty('name');
+<< true
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          You can also find all the properties of an Object by using the following techniques:
+          <br />
+          <code>
+            <pre>
+↓↓↓↓ for in loop ↓↓↓↓
+for(const key in superman) {
+    console.log(key + ": " + superman[key]);
+}
+<< "name: Superman"
+<< "real name: Clark Kent"
+<< "height: 75"
+<< "weight: 235"
+<< "hero: true"
+<< "villain: false"
+<< "allies: Batman,Supergirl,Superboy"
+<< "fly: function (){
+    console.log(\"Up, up and away!\");
+}"
+
+↓↓↓↓ hasOwnProperty() ↓↓↓↓
+for(const key in superman) {
+  if(superman.hasOwnProperty(key)){
+      console.log(key + ": " + superman[key]);
+  }
+}
+
+↓↓↓↓ Object.keys() ↓↓↓↓
+for(const key of Object.keys(superman)) {
+  console.log(key);
+}
+<<  name
+  real name
+  height
+  weight
+  hero
+  villain
+  allies
+  fly
+
+↓↓↓↓ Object.values() ↓↓↓↓
+for(const value of Object.values(superman)) {
+    console.log(value);
+}
+<<  Superman
+    Clark Kent
+    75
+    235
+    true
+    false
+    [ 'Batman','Supergirl','Superboy' ]
+    [Function: fly]
+
+↓↓↓↓ Object.entries() ↓↓↓↓
+for(const [key,value] of Object.entries(superman)) {
+    console.log(`${key}: ${value}`);
+}
+<<  name: Superman
+    real name: Clark Kent
+    height: 75
+    weight: 235
+    hero: true
+    villain: false
+    allies: [ 'Batman','Supergirl','Superboy' ]
+    fly: [Function: fly]
+          </pre
+            >
+          </code>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Question(s)</h3>
+      <ul>
+        <li>
+          No questions this week, as I was able to solve using some code pens that I found during the week.
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
