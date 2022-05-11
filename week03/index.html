@@ -176,7 +176,8 @@ superman.hasOwnProperty('name');
           </code>
         </li>
         <li>
-          You can also find all the properties of an Object by using the following techniques:
+          You can also find all the properties of an Object by using the
+          following techniques:
           <br />
           <code>
             <pre>
@@ -247,10 +248,149 @@ for(const [key,value] of Object.entries(superman)) {
       </ul>
     </section>
     <section>
+      <h2>Ch6: Document Object Model</h2>
+      <ul>
+        <li>
+          The Document Object Model, or DOM for short, represents an HTML
+          document as a network of connected nodes that form a tree-like
+          structure. <br />
+          <img src="../images/ch6nodes_dom-tree.png" alt="The DOM tree" />
+        </li>
+        <li>
+          Getting Elements (Examples):
+          <br />
+          <code>
+            <pre>
+const body = document.body;
+const h1 = document.getElementById('title');        
+const listItems = document.getElementsByTagName('li');
+const heroes = document.getElementsByClassName('hero');
+
+document.querySelector('#bats');
+document.querySelectorAll('.hero');
+
+heroes.childNodes
+heroes.children
+heroes.firstChild
+heroes.lastChild
+wonderWoman.parentNode
+wonderWoman.nextSibling
+wonderWoman.previousSibling
+
+textNode.nodeValue;
+wonderWoman.textContent
+
+wonderWoman.getAttribute('class');
+wonderWoman.getAttribute('src');
+            </pre>
+          </code>
+        </li>
+        <li>
+          Setting Element Attributes (Examples):
+          <br />
+          <code>
+            <pre>
+wonderWoman.setAttribute('class', 'villain'); // Class set to villain
+wonderWoman.setAttribute('id','amazon');
+
+wonderWoman.className;
+<< "villain"
+wonderWoman.className = 'hero'
+<< "hero"
+
+wonderWoman.classList.add('warrior'); // Use classList when possible to avoid deleting all classes in the Element
+wonderWoman.classList.remove('warrior');
+
+wonderWoman.classList.toggle('hero'); // will remove the 'hero' class
+<< false
+wonderWoman.classList.toggle('sport'); // will add the 'hero' class back
+<< true
+
+wonderWoman.classList.contains('hero');
+<< true
+wonderWoman.classList.contains('villain');
+<< false
+
+const flash = document.createElement('li');
+const flashText = document.createTextNode('Flash');
+flash.appendChild(flashText);
+// or
+const flash = document.createElement('li');
+flash.textContent = 'Flash';
+
+// Put in a function
+function createElement (tag,text) {
+  const el = document.createElement(tag);
+  el.textContent = text;
+  return el
+}
+const aquaman = createElement('li','Aquaman');
+
+heroes.appendChild(flash);
+heroes.insertBefore(aquaman,wonderWoman);
+heroes.removeChild(aquaman);
+h1.innerHTML = 'Suicide Squad';
+
+// Replacing Elements on a Page
+const h1 = document.getElementById('title');
+const oldText = h1.firstChild;
+const newText = document.createTextNode('Justice League of America');
+h1.replaceChild(newText,oldText);
+            </pre>
+          </code>
+        </li>
+        <li>
+          Updating CSS (Examples):
+          <br />
+          <code>
+            <pre>
+const heroes = document.getElementById('roster');
+const superman = heroes.children[0];       
+superman.style.border = "red 2px solid";
+<< "red 2px solid"
+
+superman.style.display = 'none';
+<< "none"
+superman.style.display = 'block';
+<< "block"
+            </pre>
+          </code>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Ch7: Events</h2>
+      <ul>
+        <li>
+          JavaScript, uses a non-blocking approach that uses event listeners to
+          listen out for any clicks on the page. Every time the page is clicked,
+          a callback function will be called. So the program can continue
+          processing the rest of the code while it's waiting for the click event
+          to happen.
+        </li>
+        <li>Using Event Listeners (Examples): 
+          <br />
+          <code>
+            <pre>
+document.body.addEventListener('click',doSomething);
+
+addEventListener('click', () => alert('You Clicked!'));
+//or
+function doSomething() {
+  alert('You Clicked!');
+}  
+addEventListener('click',doSomething);
+            </pre>
+            </code>
+        </li>
+      </ul>
+    </section>
+    <section>
       <h3>Question(s)</h3>
       <ul>
         <li>
-          No questions this week, as I was able to solve using some code pens that I found during the week.
+          No questions this week, as I was able to solve using some code pens
+          that I found during the week.
         </li>
       </ul>
     </section>
