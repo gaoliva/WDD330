@@ -39,6 +39,7 @@ function addToDo(e) {
   localStorage.setItem("items", JSON.stringify(items));
   populateList(items, toDoList);
   this.reset();
+  showAll();
 }
 
 //Check task off in local storage and from list
