@@ -10,6 +10,7 @@ h1 {
   padding: 1rem;
 }
 
+
 .list-display {
   border-radius: 5px;
   border: rgb(43, 42, 42) 1px solid;
@@ -18,7 +19,7 @@ h1 {
   background-color: rgb(211, 211, 218);
 }
 
-.list-item {
+.list-task {
   border-bottom: rgb(44, 43, 43) 1px solid;
   padding: 0.5rem;
   display: flex;
@@ -72,7 +73,7 @@ input {
   font-size: 1.1rem;
 }
 
-.add-items {
+.add-tasks {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,14 +91,6 @@ input {
   cursor: pointer;
 }
 
-#reset-btn {
-  background-color: rgb(188, 22, 22);
-  padding: 0.5rem;
-  margin: 2rem;
-  font-size: 1rem;
-  width: 100px;
-}
-
 .remove-btn {
   color: rgb(219, 84, 84);
   font-weight: bold;
@@ -111,11 +104,6 @@ input {
 
 input[type="checkbox"]:checked + label {
   text-decoration: line-through;
-}
-
-.filter-active {
-  background-color: navy;
-  color: white;
 }
 
 .footer-btn:hover,
