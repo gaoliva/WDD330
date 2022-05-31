@@ -60,6 +60,7 @@ function deleteToDo(e) {
   item.remove();
   items.splice(`${data}`, 1);
   localStorage.setItem("items", JSON.stringify(items));
+  showAll();
 }
 
 
