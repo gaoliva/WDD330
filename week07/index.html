@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WDD 330: Week 7</title>
+  </head>
+  <body>
+    <h1>Week 7 Notes</h1>
+    <section>
+      <h2>Ch11: Further Functions</h2>
+      <ul>
+        <li>
+          The call() method can be used to set the value of this inside a
+          function to an object that is provided as the first argument.
+        </li>
+        <li>
+          We can create some objects that have a name property, then use the
+          call() method to invoke the sayHello() function, providing each object
+          as an argument. This will then take the value of this in the function:
+          <code>
+            <pre>
+const clark = { name: 'Clark' };
+const bruce = { name: 'Bruce' };
+
+sayHello.call(clark);
+<< 'Hello, my name is Clark'
+
+sayHello.call(bruce);
+<< 'Hello, my name is Bruce'
+            </pre>
+          </code>
+        </li>
+        <li>
+          If the function that’s called requires any parameters, these need to
+          be provided as arguments after the first argument, which is always the
+          value of this.
+          <code>
+            <pre>
+function sayHello(greeting='Hello'){
+    return `${ greeting }, my name is ${ this.name }`;
+}
+
+sayHello.call(clark, 'How do you do');
+<< 'How do you do, my name is Clark'
+
+sayHello.call(bruce);
+<< 'Hello, my name is Bruce'
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          <strong>Memoization: </strong>If a function takes some time to compute
+          a return value, we can save the result in a cache property. Then if
+          the same argument is used again later, we can return the value from
+          the cache, rather than having to compute the result again.
+          <code>
+            <pre>
+function square(x){
+    square.cache = square.cache || {};
+    if (!square.cache[x]) {
+        square.cache[x] = x*x;
+    }
+    return square.cache[x]
+}
+
+//Then we can see...
+
+square(3);
+<< 9
+
+square(-11);
+<< 121
+
+square.cache;
+<< {"3": 9, "-11": 121}
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          <strong>Immediately Invoked Function Expressions: </strong>IIFEs are a
+          useful way of performing a task while keeping any variables wrapped up
+          within the scope of the function. This means the global namespace is
+          not polluted with lots of variable names.
+        </li>
+        <li>
+          <strong>Temporary Variables: </strong>There is no way to remove a
+          variable from a scope once it is been declared. If a variable is only
+          required temporarily, it may cause confusion if it is still available
+          later in the code. Placing any code that uses the temporary variable
+          inside an IIFE will ensure it is only available while the IIFE is
+          invoked, then it will disappear.
+        </li>
+        <li>
+          <strong>Initialization Code: </strong>An IIFE can be used to set up
+          any initialization code that there will be no need for again. Because
+          the code is only run once, there is no need to create any reusable,
+          named functions, and all the variables will also be temporary. An IIFE
+          will be invoked once, and can set up any variables, objects and event
+          handlers when the page loads.
+          <code>
+            <pre>
+(function() {
+    const name = 'Peter Parker'; // This might be obtained from a cookie in reality
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday', 'Friday','Saturday'];
+    const date = new Date(),today = days[date.getDay()];
+    console.log(`Welcome back ${name}. Today is ${today}`);
+
+})();
+<< 'Welcome back Peter Parker. Today is Tuesday'
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          <strong>Safe Use of Strict Mode: </strong>The recommended way to use
+          strict mode is to place all your code inside an IIFE, like so:
+          <code>
+            <pre>
+(function() {
+    'use strict';
+
+// All your code would go inside this function
+
+})();
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          <strong>Creating Self-contained Code Blocks: </strong>
+          <code>
+            <pre>
+(function() {
+    // block A
+    const name = 'Block A';
+    console.log(`Hello from ${name}`);
+    }());
+
+    (function() {
+    // block B
+    const name = 'Block B';
+    console.log(`Hello from ${name}`);
+}());
+
+<<  Hello from Block A
+    Hello from Block B
+        </pre
+            >
+          </code>
+        </li>
+        <li>
+          The dynamic nature of JavaScript means that a function is able to not
+          only call itself, but define itself, and even redefine itself. This is
+          done by assigning an anonymous function to a variable that has the
+          same name as the function. <br />
+          If the function is also assigned to another variable, this variable
+          will maintain the original function definition and not be rewritten.
+          This is because the original function is assigned to a variable, then
+          within the function, a variable with the same name as the function is
+          assigned to a different function. EXAMPLE:
+          <code>
+            <pre>
+function party(){
+    console.log('Wow this is amazing!');
+    party = function(){
+        console.log('Been there, got the T-Shirt');
+    }
+}
+
+const beachParty = party; // note that the party function has not been invoked
+
+beachParty(); // the party() function has now been redefined, even though it hasn't been called explicitly
+<< 'Wow this is amazing!'
+
+party(); 
+<< 'Been there, got the T-Shirt'
+
+beachParty(); // but this function hasn't been redefined
+<< 'Wow this is amazing!'
+
+beachParty(); // no matter how many times this is called it will remain the same
+<< 'Wow this is amazing!'
+          </pre
+            >
+          </code>
+          This is called the Lazy Definition Pattern and is often used when some
+          initialization code is required the first time it’s invoked. This
+          means the initialization can be done the first time it’s called, then
+          the function can be redefined to what you want it to be for every
+          subsequent invocation.
+        </li>
+        <li>
+          <strong>Init-Time Branching: </strong> This enables the functions to
+          work more effectively in the browser, and avoid checking for features
+          every time they’re invoked.
+          <code>
+            <pre>
+function ride(){
+    if (window.unicorn) { 
+        ride = function(){
+        // some code that uses the brand new and sparkly unicorn methods
+        return 'Riding on a unicorn is the best!';
+        }
+    } else {
+        ride = function(){
+        // some code that uses the older pony methods
+        return 'Riding on a pony is still pretty good';
+        }
+    }
+    return ride();
+}
+            </pre>
+          </code>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Ch13: AJAX</h2>
+      <ul>
+        <li></li>
+      </ul>
+    </section>
+  </body>
+</html>
