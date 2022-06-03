@@ -1,24 +1,25 @@
 const toDoList = getList();
 
 //Query Selectors
-const addBtn = document.querySelector(".add-items");
+const addBtn = document.querySelector(".add-tasks");
 const listButtons = document.querySelector("ul");
-const resetBtn = document.getElementById("reset-btn");
-const filterButtons = document.getElementById("filter-btns");
 const listCount = document.getElementById("task-count");
+const filterButtons = document.getElementById("filter-btns");
+const filterAll = document.getElementById("all");
+const filterComplete = document.getElementById("completed");
+const filterActive = document.getElementById("active");
 
 //Add event listeners
 addBtn.addEventListener("submit", addToDo);
 listButtons.addEventListener("click", listInteractions);
 filterButtons.addEventListener("click", filterList);
-resetBtn.addEventListener("click", resetList);
 
-//Get list element from document
+//Get list of elements
 function getList() {
   return document.querySelector(".toDoList");
 }
 
-//Get list items from local storage
+//Get list of tasks from local storage
 function getItems() {
   return JSON.parse(localStorage.getItem("items")) || [];
 }
@@ -38,6 +39,7 @@ function addToDo(e) {
   localStorage.setItem("items", JSON.stringify(items));
   populateList(items, toDoList);
   this.reset();
+  showAll();
 }
 
 //Check task off in local storage and from list
@@ -59,26 +61,21 @@ function deleteToDo(e) {
   item.remove();
   items.splice(`${data}`, 1);
   localStorage.setItem("items", JSON.stringify(items));
+  showAll();
 }
 
-//Clear the whole list
-function resetList(e) {
-  console.log("time to reset");
-  localStorage.clear();
-  location.reload();
-}
 
 //Display list from local storage
-function populateList(items = [], toDoList) {
-  toDoList.innerHTML = items
-    .map((item, i) => {
+function populateList(tasks = [], toDoList) {
+  toDoList.innerHTML = tasks
+    .map((task, i) => {
       return `
-      <li class="list-item" id="${i}">
+      <li class="list-task" id="${i}">
         <div>
         <input class='checkbox' name="checkbox" type="checkbox" data-index=${i} id="items${i}" ${
-        item.done ? "checked" : ""
+        task.done ? "checked" : ""
       }/>
-        <label for="items${i}">${item.text}</label>
+        <label for="items${i}">${task.text}</label>
         </div>
         <button name="remove-btn" type=button class="remove-btn">X</button>
       </li>
@@ -110,31 +107,44 @@ function filterList(e) {
 
 //Individual filter functions
 function showActive(e) {
-  const items = getItems();
-  const active = items.filter(function (item) {
-    if (item.done === false) {
-      return item;
+  const tasks = getItems();
+  const active = tasks.filter( (task) => {
+    if (task.done === false) {
+      return task;
     }
   });
+  const taskCount = active.length;
   populateList(active, toDoList);
+  filterAll.style.backgroundColor = ''
+  filterActive.style.backgroundColor = 'blue'
+  filterComplete.style.backgroundColor = '' 
+  return listCount.innerHTML = taskCount + ' task(s) still active'
 }
 
 function showCompleted(e) {
-  const items = getItems();
-  const complete = items.filter(function (item) {
-    if (item.done !== false) {
-      return item;
+  const tasks = getItems();
+  const complete = tasks.filter((task) => {
+    if (task.done !== false) {
+      return task;
     }
   });
+  const taskCount = complete.length;
   populateList(complete, toDoList);
+  filterAll.style.backgroundColor = ''
+  filterActive.style.backgroundColor = ''
+  filterComplete.style.backgroundColor = 'blue' 
+  return listCount.innerHTML = taskCount + ' task(s) completed'
 }
 
 function showAll(e) {
-  const items = getItems();
-  populateList(items, toDoList);
+  const tasks = getItems();
+  const taskCount = tasks.length;
+  populateList(tasks, toDoList);
+  filterAll.style.backgroundColor = 'blue'
+  filterActive.style.backgroundColor = ''
+  filterComplete.style.backgroundColor = '' 
+  return listCount.innerHTML = taskCount + ' task(s) total'
 }
 
-//populate starting list
+//Populate on load
 showAll();
-
-////LIST STUFF

@@ -18,7 +18,132 @@
         </li>
         <li>
           A form object also has a method called elements that returns an HTML
-          collection of all the elements contained in the form.
+          collection of all the elements contained in the form. <br />
+          <code>
+            <pre>
+const [input,button] = form.elements;
+
+// or the name attributes:
+const input = form.searchInput
+const input = form['searchInput']
+</pre
+            >
+          </code>
+        </li>
+        <li>
+          Properties and methods:
+          <code>
+            <pre>
+<span><</span>button type='submit'>Submit<span><</span>/button> 
+<span><</span>input type='submit' value='Submit'>
+<span><</span>input type='image' src='button.png'>
+form.action = '/an/other.url'     
+</pre>
+          </code>
+        </li>
+        <li>
+          Form events:
+          <ul>
+            <li>
+              focus:
+              <pre><code>input.addEventListener('focus', () => alert('focused'), false);</code></pre>
+            </li>
+            <li>
+              blur:
+              <pre><code>input.addEventListener('blur', () => alert('blurred'), false);</code></pre>
+            </li>
+            <li>
+              change:
+              <pre><code>input.addEventListener('change', () => alert('changed'), false);</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Submitting a form:
+          <code>
+            <pre>
+// Add event lister to intercept the form
+const form = document.forms['search'];
+form.addEventListener ('submit', search, false);
+
+function search() {
+  alert(' Form Submitted');
+}
+
+// Stop the form from being submitted to the sample url
+function search(event) {
+  alert('Form Submitted');
+  event.preventDefault();
+}
+</pre
+            >
+          </code>
+        </li>
+        <li>
+          Retrieving and changing values from a form:
+          <code>
+            <pre>
+// Retrieving example:
+function search(event) {
+    alert(`You Searched for: ${input.value}`);
+    event.preventDefault();
+}
+
+// Setting example:
+input.value = 'Search Here';
+
+// Using event listener to improve UX:
+input.addEventListener('focus', function(){
+  if (input.value==='Search Here') {
+      input.value = '' 
+  }
+}, false);
+
+input.addEventListener('blur', function(){
+  if(input.value === '') {
+      input.value = 'Search Here';
+  } }, false);
+
+//OR you can use the placeholder attribute for the UX:
+<span><</span>input type='text' name='search-box' placeholder='Search Here'>
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          Form Controls:
+          <ul>
+            <li>
+              input (contains attributes: autofocus, placeholder, maxlength)
+            </li>
+            <li>select</li>
+            <li>textarea</li>
+            <li>button</li>
+          </ul>
+        </li>
+        <li>
+          Input fields:
+          <ul>
+            <li>text -- (<code>type='text'</code>)</li>
+            <li>password -- (<code>type='password'</code>)</li>
+            <li>checkbox -- (<code>type='checkbox'</code>)</li>
+            <li>radio button -- (<code>type='radio'</code>)</li>
+            <li>
+              hidden input -- (<code>type='hidden'</code>) [it is not secret,
+              just hidden, so it is not safe for storage of sensitive data]
+            </li>
+            <li>file input -- (<code>type='file'</code>)</li>
+            <li>
+              other types -- (<code>number, tel, color, email, textarea</code>)
+            </li>
+            <li>select dropdown -- (select and then option)</li>
+            <li>
+              buttons -- (<code
+                >type='reset', type='button', type='menu', type='menuitem',
+                type='li'</code
+              >)
+            </li>
+          </ul>
         </li>
       </ul>
     </section>
