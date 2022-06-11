@@ -249,6 +249,72 @@ function ride(){
           natively supported in JavaScript, so you can deal with JavaScript
           objects rather than having to parse XML files using DOM methods.
         </li>
+        <li>
+          The <code>fetch():</code> method returns a promise that resolves to
+          the response returned from the URL that was provided as an argument.
+          <code>
+            <pre>
+fetch('https://example.com/data')
+  .then( // code that handles the response )
+  .catch( // code that runs if the server returns an error )
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          The <code>redirect()</code> method can be used to redirect to another
+          URL. It creates a new promise that resolves to the response from the
+          redirected URL.
+          <code>
+            <pre>
+fetch(url)
+  .then( response => response.redirect(newURL)); // redirects to another URL
+  .then( // do something else )
+  .catch( error => console.log('There was an error: ', error))
+        </pre
+            >
+          </code>
+        </li>
+        <li>
+          The <code>text()</code> method takes a stream of text from the
+          response, reads it to completion and then returns a promise that
+          resolves to a USVSting object that can be treated as a string in
+          JavaScript.
+          <code>
+            <pre>
+fetch(url)
+  .then( response => response.text() ); // transforms the text stream into a JavaScript string
+  .then( text => console.log(text) )
+  .catch( error => console.log('There was an error: ', error))
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          The <code>blob()</code> method is used to read a file of raw data,
+          such as an image or a spreadsheet. Once it has read the whole file, it
+          returns a promise that resolves with a blob object.
+          <code>
+            <pre>
+fetch(url)
+  .then( response => response.blob() ); // transforms the data into a blob object
+  .then( blob => console.log(blob.type) )
+  .catch( error => console.log('There was an error: ', error))
+          </pre
+            >
+          </code>
+        </li>
+        <li>
+          The <code>json()</code> method is used to deal with these by
+          transforming a stream of JSON data into a promise that resolves to a
+          JavaScript object.
+          <code><pre>
+fetch(url)
+  .then( response => response.json() ); // transforms the JSON data into a JavaScript object
+  .then( data => console.log(Object.entries(data)) )
+  .catch( error => console.log('There was an error: ', error))
+          </pre></code>
+        </li>
       </ul>
     </section>
   </body>
