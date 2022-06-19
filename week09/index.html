@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WDD 330: Week 9</title>
+  </head>
+  <body>
+    <h1>Week 9 Notes</h1>
+    <section>
+      <ul>
+        <h2>Ch9: The Window Object</h2>
+        <li>
+          The Browser Object Model (or BOM for short) is a collection of
+          properties and methods that contain information about the browser and
+          computer screen.
+          <strong>
+            In a browser environment, the global object is the window object.
+          </strong>
+        </li>
+        <li>
+          <p>
+            The BOM only makes sense in a browser environment. This means that
+            other environments (such as Node.js) probably won’t have a window
+            object, although they will still have a global object; for example,
+            Node.js has an object called global.
+          </p>
+          <p>
+            If you don’t know the name of the global object, you can also refer
+            to it using the keyword this in the global scope. The following code
+            provides a quick way of assigning the variable global to the global
+            object:
+            <code>
+              <pre>
+// from within the global scope
+const global = this;
+          </pre
+              >
+            </code>
+          </p>
+        </li>
+        <li>
+          <strong> Dialogs: </strong>
+          <p>
+            The <code> window.alert() </code> method will pause the execution of
+            the program and display a message in a dialog box. <br />
+            <img src="./images/ch9alert.png" alt="" />
+          </p>
+          <p>
+            The <code> window.confirm() </code> method will stop the execution
+            of the program and display a confirmation dialog that shows the
+            message provided as an argument, and giving the options of OK or
+            Cancel. <br />
+            <img src="./images/ch9confirm.png" alt="" />
+          </p>
+          <p>
+            The <code> window.prompt() </code> method will stop the execution of
+            the program. It displays a dialog that shows a message provided as
+            an argument, as well as an input field that allows the user to enter
+            text.
+            <br />
+            <img src="./images/ch9prompt.png" alt="" />
+          </p>
+
+          <p>
+            WARNING: These methods will stop the execution of a program in its
+            tracks.
+          </p>
+        </li>
+        <li>
+          <strong>Locations:</strong>
+
+          <ul>
+            <li>
+              The <code>window.location</code> property is an object that
+              contains information about the URL of the current page. It
+              contains a number of properties that provide information about
+              different fragments of the URL.
+            </li>
+
+            <li>
+              The <code>protocol</code> property returns a string describing the
+              protocol used (such as http, https, pop2, ftp etc.). Note that
+              there is a colon (:) at the end.
+            </li>
+            <li>
+              The <code>host</code> property returns a string describing the
+              domain of the current URL and the port number (this is often
+              omitted if the default port 80 is used).
+            </li>
+            <li>
+              The <code>pathname</code> property returns a string of the path
+              that follows the domain
+            </li>
+            <li>
+              The <code>search</code> property returns a string that starts with
+              a “?” followed by the query string parameters. It returns an empty
+              string if there are no query string parameters.
+            </li>
+            <li>
+              The <code>hash</code> property returns a string that starts with a
+              “#” followed by the fragment identifier. It returns an empty
+              string if there is no fragment identifier.
+            </li>
+            <li>
+              The <code>origin</code> property returns a string that shows the
+              protocol and domain where the current page originated from. This
+              property is read-only, so cannot be changed
+            </li>
+            <li>
+              The window.location object also has the following methods:
+              <ul>
+                <li>
+                  The <code>reload()</code> method can be used to force a reload
+                  of the current page. If it’s given a parameter of true, it
+                  will force the browser to reload the page from the server,
+                  instead of using a cached page.
+                </li>
+
+                <li>
+                  The <code>assign()</code> method can be used to load another
+                  resource from a URL provided as a parameter.
+                </li>
+
+                <li>
+                  The <code>replace()</code> method is almost the same as the
+                  assign() method, except the current page will not be stored in
+                  the session history, so the user will be unable to navigate
+                  back to it using the back button.
+                </li>
+
+                <li>
+                  The <code>toString()</code> method returns a string containing
+                  the whole URL.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>
