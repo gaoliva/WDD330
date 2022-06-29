@@ -49,7 +49,124 @@
             </li>
           </ul>
         </li>
-        <li></li>
+        <li>
+          Built-In validation atributes:
+          <ul>
+            <li>
+              <code>required</code>. | note: If the <code>input</code> has no
+              value, the input will match the <code>:invalid</code> pseudoclass.
+            </li>
+            <li>
+              <code>pattern</code>. | note: This excepts a regular expression
+              (regex)
+            </li>
+            <li>
+              <code>minlength</code>, <code>maxlength</code>. | note: A field is
+              invalid if it has a value and that value has fewer characters than
+              the minlength value or more than the maxlength value.
+            </li>
+            <li>
+              <code>min</code>, <code>max</code>. | note: For number fields.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Validating forms using JavaScript:
+          <ul>
+            <li>
+              Constraint Validation API:
+              <ul>
+                <li>
+                  <code>HTMLButtonElement</code> (represents a
+                  <code>button</code> element)
+                </li>
+                <li>
+                  <code>HTMLFieldSetElement</code> (represents a
+                  <code>fieldset</code> element)
+                </li>
+                <li>
+                  <code>HTMLInputElement</code> (represents an
+                  <code>input</code> element)
+                </li>
+                <li>
+                  <code>HTMLOutputElement</code> (represents an
+                  <code>output</code> element)
+                </li>
+                <li>
+                  <code>HTMLSelectElement</code> (represents a
+                  <code>select</code> element)
+                </li>
+                <li>
+                  <code>HTMLTextAreaElement</code> (represents a
+                  <code>textarea</code> element)
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              Constraint Validation API Properties:
+              <ul>
+                <li><code>validationMessage</code></li>
+                <li>
+                  <code>validity</code> => returns: <code>ValidityState</code>:
+                  <ul>
+                    <li><code>patternMismatch</code></li>
+                    <li><code>tooLong</code></li>
+                    <li><code>tooShort</code></li>
+                    <li><code>rangeOverflow</code></li>
+                    <li><code>rangeUnderflow</code></li>
+                    <li><code>typeMismatch</code></li>
+                    <li><code>valid</code></li>
+                    <li><code>valueMissing</code></li>
+                  </ul>
+                </li>
+                <li>
+                  <code>willValidate</code> => returns: <code>true</code> if the
+                  element will be validated when the form is submitted;
+                  <code>false</code> otherwise.
+                </li>
+              </ul>
+            </li>
+            <li>
+              Constraint Validation API Methods:
+              <ul>
+                <li><code>checkValidity()</code></li>
+                <li>
+                  <code>reportValidity()</code> Useful in combination with
+                  <code>preventDefault()</code> in an
+                  <code>onSubmit</code> event handler
+                </li>
+                <li><code>setCustomValidity(message)</code></li>
+              </ul>
+            </li>
+            <li>
+              Example:
+              <code>
+                <pre>
+// HTML
+<span><</span>form>
+  <span><</span>label for="mail">I would like you to provide me with an e-mail address:<span><</span>/label>
+  <span><</span>input type="email" id="mail" name="mail">
+  <span><</span>button>Submit<span><</span>/button>
+<span><</span>/form>
+
+// JavaScript
+const email = document.getElementById("mail");
+
+email.addEventListener("input", function (event) {
+  if (email.validity.typeMismatch) {
+    email.setCustomValidity("I am expecting an e-mail address!");
+    email.reportValidity();
+  } else {
+    email.setCustomValidity("");
+  }
+});
+              </pre
+                >
+              </code>
+            </li>
+          </ul>
+        </li>
       </ul>
     </section>
   </body>
