@@ -1,0 +1,31 @@
+html {
+  margin: 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 30fr 100fr 30fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+h1 {
+  background-color: rgb(130, 212, 212);
+  border-radius: 10px 0 0 0;
+  padding: 50px;
+}
+
+ul {
+  background: #3399ff;
+  padding: 20px;
+}
+
+ul li {
+  background: #cce5ff;
+  color: darkblue;
+  margin: 10px;
+  padding: 10px;
+}

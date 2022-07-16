@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Block 2: Recipe Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/css/main.css">
+</head>
+<body>
+    <header> Recipe Book 
+        <form class="search-container" id="searchForm" onsubmit="return false">
+            <input type="search" id="user-query" class="textbox" placeholder="Search for a recipe..." />
+            <button type="submit" id="search">  
+                <i class="fa fa-search"></i>  
+            </button>
+        </form>
+    </header>
+    <div id="container">
+        <div class="input-group">
+            <div class="container">
+                
+                    <label class="radio" for="diet">Diet type:</label>
+                    <select class= "radio radio-btn"id="diet">
+                        <option value="" selected>All</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="high-fiber">High-Fiber</option>
+                        <option value="high-protein">High-Protein</option>
+                        <option value="low-carb">Low-Carb</option>
+                        <option value="low-fat">Low-Fat</option>
+                        <option value="low-sodium">Low-Sodium</option>
+                    </select>
+                    <label class="radio" for="cuisineType">Cuisine type:</label>
+                    <select class= "radio radio-btn"id="cuisineType">
+                        <option value="" selected>All</option>
+                        <option value="American">American</option>
+                        <option value="Asian">Asian</option>
+                        <option value="British">British</option>
+                        <option value="Caribbean">Caribbean</option>
+                        <option value="Central Europe">Central Europe</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Eastern Europe">Eastern Europe</option>
+                        <option value="French">French</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Kosher">Kosher</option>
+                        <option value="Mediterranean">Mediterranean</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Middle Eastern">Middle Eastern</option>
+                        <option value="Nordic">Nordic</option>
+                        <option value="South American">South American</option>
+                        <option value="South East Asian">South East Asian</option>
+                    </select>
+
+            </div>
+            
+        </div>
+        <div class="rl-container">
+            <button type="button" id="reading-list-btn">
+               Show Saved Recipes
+            </button>
+            <div id="saved" class="book-card-container hidden-saved">
+            </div>
+        </div>
+        <div class="main-container">
+            <div id="results" class="book-card-container results">
+            </div>
+        </div>
+    <script src="js/main.js" type="module"></script>
+</body>
+
+</html>

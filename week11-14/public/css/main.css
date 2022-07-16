@@ -1,0 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&family=Patua+One&display=swap");
+
+html {
+  margin: 0;
+}
+
+header {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: left;
+  font-family: "Bowlby One SC", cursive;
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+  border-bottom: #040404 2px solid;
+}
+
+body {
+  margin: 0;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  margin: 0;
+  padding: 1rem;
+  font-family: "Bowlby One SC", cursive;
+  text-align: center;
+  color: #ffffff;
+  background-color: #3a1e9e;
+  font-size: 2.5rem;
+  letter-spacing: 0.25rem;
+}
+
+h2 {
+  font-family: "Open Sans", sans-serif;
+  color: #020202;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+button {
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Patua One", cursive;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}
+
+#reading-list-btn {
+  color: #070707;
+  width: 80%;
+  margin: 0 10%;
+  padding: 1rem;
+  font-family: "Patua One", cursive;
+  font-size: 1.25rem;
+}
+#reading-list-btn:active,
+#reading-list-btn:hover {
+  box-shadow: 0.3rem 0.6rem 0.9rem -0.4rem rgba(0, 0, 10, 0.5);
+  transform: scale(1.1);
+}
+
+.menu-container #dropdown-btn {
+  display: flex;
+  justify-content: space-between;
+  background-color: #3a1e9e;
+  padding: 0.6rem;
+  color: #ffffff;
+  border-radius: 5px;
+  margin: 0;
+  cursor: pointer;
+}
+.menu-container #dropdown-btn p {
+  margin: 0 1rem;
+}
+
+.input-group {
+  margin: 1rem;
+}
+.input-group div {
+  padding: 0.5rem;
+}
+
+.search-container {
+  display: flex;
+}
+
+button#search {
+  background-color: #506266;
+  color: #ffffff;
+  border-radius: 0 5px 5px 0;
+}
+
+#filter-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ffffff;
+  border: 1px solid #cc0b2b;
+  border-radius: 5px;
+}
+#filter-list div.radio {
+  display: flex;
+  justify-content: center;
+}
+
+.radio-btn {
+  margin-top: 0.3rem;
+  margin-left: -1.25rem;
+  cursor: pointer;
+}
+
+.select-label {
+  justify-self: center;
+}
+.textbox {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.5rem 1rem;
+  border: white 1px solid;
+  border-radius: 5px 0 0 5px;
+}
+
+.book-card {
+  background-color: #b6e849;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0.3rem 0.6rem 0.9rem -0.4rem #a3ab78;
+  border-radius: 15px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-areas: "title title" "picture author" "picture category" "picture id" "view view" "desc desc";
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.book-card b {
+  color: #506266;
+}
+.book-card p {
+  margin-top: 0;
+  margin-left: 1rem;
+  word-break: break-word;
+}
+.book-card .title-save {
+  grid-area: title;
+  display: flex;
+  padding: 0 1rem;
+  justify-content: space-between;
+}
+.book-card .title-save a {
+  color: #161616;
+  width: 80%;
+}
+.book-card button {
+  color: #10454f;
+  background-color: #ffffff;
+  border: solid 1px #000000;
+  margin: 0.5rem 0rem 0.5rem 0.5rem;
+  font-size: 1.5rem;
+  height: 50px;
+  width: 50px;
+  transition: color 0.3s, background-color 0.3s;
+  align-self: center;
+}
+.book-card img {
+  grid-area: picture;
+  max-width: 100%;
+  padding: 0 0 0 1rem;
+  border-radius: 5px 5px 5px 5px;
+}
+.book-card p.author {
+  grid-area: author;
+}
+.book-card p.category {
+  grid-area: category;
+}
+.book-card p.idNumber {
+  grid-area: id;
+}
+.book-card .viewMore {
+  grid-area: view;
+  color: #506266;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 1rem;
+}
+.book-card .description {
+  grid-area: desc;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  padding: 1rem;
+}
+.book-card button:active,
+.book-card button:hover,
+.book-card .clickedBtn {
+  background-color: #10454f;
+  box-shadow: 0.3rem 0.6rem 0.9rem -0.4rem rgba(0, 0, 10, 0.5);
+  color: #ffffff;
+  border: #000000 1px solid;
+  transform: scale(1.2);
+  content: "saved";
+}
+
+#saved {
+  border: #000000 2px dashed;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 15px;
+}
+
+.saved.book-card {
+  background-color: #f1f0f0;
+  border: 1px solid #000000;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "title" "picture" "picture" "author" "view" "desc";
+}
+.saved.book-card button {
+  color: #cc0b2b;
+  font-weight: bold;
+}
+.saved.book-card p.author {
+  margin-bottom: 0;
+}
+.saved.book-card button:active,
+.saved.book-card button:hover {
+  background-color: #cc0b2b;
+  color: #ffffff;
+  border: #070707 1px solid;
+  transform: scale(1.2);
+  box-shadow: 0.3rem 0.6rem 0.9rem -0.4rem rgba(0, 0, 10, 0.5);
+}
+.saved.book-card .description {
+  grid-area: desc;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+.loader {
+  margin: 2rem auto;
+  border: 16px solid #ffffff;
+  border-top: 16px solid #bde038;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.hidden,
+.hidden-saved,
+#filter-list.hidden {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+    font-size: 16px;
+  }
+  body #container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    grid-column-gap: 5rem;
+    grid-template-areas: "search rl" "main rl";
+    margin-left: 5rem;
+  }
+  body .input-group {
+    grid-area: search;
+  }
+  body .rl-container {
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    overflow: auto;
+    grid-area: rl;
+    margin: 0;
+    /* background-color: #c4e1fa; */
+    border-left: #040404 2px solid;
+  }
+  body .rl-container #reading-list-btn {
+    margin: 0;
+    cursor: auto;
+    width: 100%;
+    border-radius: 0;
+  }
+  body .rl-container #reading-list-btn:hover,
+  body .rl-container #reading-list-btn:active {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  body .rl-container #saved {
+    border: none;
+    padding: 0;
+  }
+  body .main-container {
+    width: 100%;
+    overflow: auto;
+    vertical-align: top;
+    height: 100%;
+    grid-area: main;
+  }
+
+  .hidden-saved {
+    display: block;
+  }
+
+  #reading-list-btn {
+    width: 90%;
+    margin: 0 5%;
+  }
+}
+@media (min-width: 1190px) {
+  .results {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  body #container {
+    grid-template-columns: 2fr 1fr;
+  }
+}

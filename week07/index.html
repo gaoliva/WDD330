@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./main.css" />
     <title>WDD 330: Week 7</title>
   </head>
-  <body>
+  <body class="container">
     <h1>Week 7 Notes</h1>
     <section>
       <h2>Ch11: Further Functions</h2>
@@ -308,12 +309,15 @@ fetch(url)
           The <code>json()</code> method is used to deal with these by
           transforming a stream of JSON data into a promise that resolves to a
           JavaScript object.
-          <code><pre>
+          <code>
+            <pre>
 fetch(url)
   .then( response => response.json() ); // transforms the JSON data into a JavaScript object
   .then( data => console.log(Object.entries(data)) )
   .catch( error => console.log('There was an error: ', error))
-          </pre></code>
+          </pre
+            >
+          </code>
         </li>
       </ul>
     </section>

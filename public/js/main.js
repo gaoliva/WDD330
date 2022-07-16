@@ -40,6 +40,10 @@ const links = [
     label: "Week 10 Notes",
     url: "week10/index.html",
   },
+  {
+    label: "Week 11-14 Block 2 Challenge",
+    url: "week11-14/index.html",
+  },
 ];
 
 function loadIndex() {
